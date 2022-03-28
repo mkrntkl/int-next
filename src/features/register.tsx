@@ -1,24 +1,28 @@
 import React from 'react';
-import { useTranslation } from 'next-i18next';
 import { Button, Container } from '@mui/material';
+import { useTranslation } from 'next-i18next';
 import { useForm } from 'react-hook-form';
 
-import { Textfield, useWatch } from '../../common/form';
-import { Link } from '../../common';
+import { Textfield } from '../common/form/fields';
+import { isEmpty } from '../common/form/utils/validation';
 
 type FormValues = {
-  user: string;
+  [username: string]: string;
+  email: string;
   password: string;
+  confirmPassword: string;
 };
 
 const defaultValues: FormValues = {
-  user: '',
+  username: '',
+  email: '',
   password: '',
+  confirmPassword: '',
 };
 
-type LoginProps = {};
+type Props = {};
 
-const Login = (props: LoginProps) => {
+const RegisterForm = (props: Props) => {
   const { t } = useTranslation('common');
 
   const { control, handleSubmit } = useForm({
@@ -26,12 +30,11 @@ const Login = (props: LoginProps) => {
     resolver: (values) => {
       const errors = {} as typeof defaultValues;
 
-      if (!values?.user) {
-        errors.user = 'Required!';
-      }
-      if (!values?.password) {
-        errors.password = 'Required!';
-      }
+      Object.keys(values).forEach((property: string) => {
+        if (isEmpty(values[property])) {
+          errors[property] = 'Required';
+        }
+      });
       return { values, errors };
     },
   });
@@ -55,39 +58,26 @@ const Login = (props: LoginProps) => {
         maxWidth="xs"
       >
         <div style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>
-          {t('login.login')}
+          {t('createAccount')}
         </div>
-        <Textfield name="user" control={control} label={t('login.user')} />
+        <Textfield name="username" control={control} label={t('username')} />
+        <Textfield name="email" control={control} label={t('email')} />
+        <Textfield name="password" control={control} label={t('password')} />
         <Textfield
-          name="password"
+          name="confirmPassword"
           control={control}
-          label={t('login.password')}
+          label={t('confirmPassword')}
         />
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'space-between',
-            fontSize: '14px',
-          }}
-        >
-          <Link href="https://www.google.com" style={{ textAlign: 'left' }}>
-            {t('login.forgot')}
-          </Link>
-          <Link href="https://www.google.com" style={{ textAlign: 'right' }}>
-            {t('login.register')}
-          </Link>
-        </div>
         <Button
           sx={{ mt: '2.5rem', width: '100%', minHeight: '2.5rem' }}
           variant="contained"
           type="submit"
         >
-          {t('login.login')}
+          {t('register')}
         </Button>
       </Container>
     </form>
   );
 };
 
-export default Login;
+export default RegisterForm;

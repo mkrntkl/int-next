@@ -1,9 +1,11 @@
 {
-  "login": {
-    "login": "Sign in",
-    "user": "Email or username",
-    "password": "Password",
-    "forgot": "Forgot password?",
-    "register": "Create an account"
-  }
+  "login": "Sign in",
+  "userOrEmail": "Email or username",
+  "password": "Password",
+  "forgotPassword": "Forgot password?",
+  "createAccount": "Create an account",
+  "register": "Register",
+  "username": "Username",
+  "email": "Email",
+  "confirmPassword": "Confirm password"
 }

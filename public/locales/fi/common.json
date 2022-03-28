@@ -1,7 +1,11 @@
 {
-  "login": {
-    "login": "Kirjaudu sisään",
-    "user": "Sähköposti tai käyttäjätunnus",
-    "password": "Salasana"
-  }
+  "login": "Kirjaudu sisään",
+  "userOrEmail": "Sähköposti tai käyttäjätunnus",
+  "password": "Salasana",
+  "forgotPassword": "Unohditko salasanana?",
+  "createAccount": "Luo tunnus",
+  "register": "Luo tunnus",
+  "username": "Käyttäjätunnus",
+  "email": "Sähköposti",
+  "confirmPassword": "Vahvista salasana"
 }

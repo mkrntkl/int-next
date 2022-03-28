@@ -3,8 +3,9 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { styled } from '@mui/material/styles';
+
 import styles from './layout.module.scss';
-import { Navbar } from '../navbar';
+import Navbar from '../navbar';
 
 const StyledDiv = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
