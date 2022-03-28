@@ -1,0 +1,43 @@
+@use './variables.module';
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.primary {
+  &-main {
+    color: variables.$primary-main;
+  }
+  &-light {
+    color: variables.$primary-light;
+  }
+  &-dark {
+    color: variables.$primary-dark;
+  }
+}
+
+.secondary {
+  &-main {
+    color: variables.$secondary-main;
+  }
+  &-light {
+    color: variables.$secondary-light;
+  }
+  &-dark {
+    color: variables.$secondary-dark;
+  }
+}

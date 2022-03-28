@@ -1,0 +1,16 @@
+$primary-main: #37474f;
+$primary-light: #62727b;
+$primary-dark: #102027;
+
+$secondary-main: #eceff1;
+$secondary-light: #ffffff;
+$secondary-dark: #babdbe;
+
+:export {
+  primaryMain: $primary-main;
+  primaryLight: $primary-light;
+  primaryDark: $primary-dark;
+  secondaryMain: $secondary-main;
+  secondaryLight: $secondary-light;
+  secondaryDark: $secondary-dark;
+}
