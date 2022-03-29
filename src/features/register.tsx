@@ -1,13 +1,14 @@
 import React from 'react';
-import { Button, Container } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { useForm } from 'react-hook-form';
 
 import { Textfield } from '../common/form/fields';
 import { isEmpty } from '../common/form/utils/validation';
+import { Form } from '../common/form';
 
 type FormValues = {
-  [username: string]: string;
+  [key: string]: any;
+  username: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -25,58 +26,46 @@ type Props = {};
 const RegisterForm = (props: Props) => {
   const { t } = useTranslation('common');
 
-  const { control, handleSubmit } = useForm({
+  const form = useForm({
     defaultValues: defaultValues,
     resolver: (values) => {
       const errors = {} as typeof defaultValues;
 
-      Object.keys(values).forEach((property: string) => {
-        if (isEmpty(values[property])) {
-          errors[property] = 'Required';
+      Object.keys(values).forEach((key) => {
+        if (isEmpty(values[key])) {
+          errors[key] = 'Required';
         }
       });
+
+      if (values.username && !values.username.match(/^[a-zA-Z0-9]*$/)) {
+        errors.username = 'Username may only contain letters and numbers';
+      }
       return { values, errors };
     },
   });
+
+  const { control } = form;
 
   const onSubmit = async (values: FormValues) => {
     console.log(values);
   };
 
   return (
-    <form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
-      <Container
-        sx={{
-          height: '20vh',
-          padding: '3rem',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: '1.25rem',
-        }}
-        maxWidth="xs"
-      >
-        <div style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>
-          {t('createAccount')}
-        </div>
-        <Textfield name="username" control={control} label={t('username')} />
-        <Textfield name="email" control={control} label={t('email')} />
-        <Textfield name="password" control={control} label={t('password')} />
-        <Textfield
-          name="confirmPassword"
-          control={control}
-          label={t('confirmPassword')}
-        />
-        <Button
-          sx={{ mt: '2.5rem', width: '100%', minHeight: '2.5rem' }}
-          variant="contained"
-          type="submit"
-        >
-          {t('register')}
-        </Button>
-      </Container>
-    </form>
+    <Form
+      form={form}
+      onSubmit={onSubmit}
+      title={t('createAccount')}
+      submitLabel={t('register')}
+    >
+      <Textfield name="username" control={control} label={t('username')} />
+      <Textfield name="email" control={control} label={t('email')} />
+      <Textfield name="password" control={control} label={t('password')} />
+      <Textfield
+        name="confirmPassword"
+        control={control}
+        label={t('confirmPassword')}
+      />
+    </Form>
   );
 };
 
