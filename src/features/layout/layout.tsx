@@ -1,18 +1,16 @@
 import React from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { styled } from '@mui/material/styles';
 
 import styles from './layout.module.scss';
 import Navbar from '../navbar';
+import Footer from './footer';
 
 const StyledDiv = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
   width: '100%',
 }));
-
-const StyledFooter = styled('footer')(({ theme }) => ({}));
 
 type Props = {
   children: JSX.Element;
@@ -30,14 +28,7 @@ const Layout = ({ children }: Props) => {
       </Head>
       <Navbar />
       <StyledDiv className={styles.main}>{children}</StyledDiv>
-      <StyledFooter className={styles.footer}>
-        <a>
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </StyledFooter>
+      <Footer />
     </div>
   );
 };
