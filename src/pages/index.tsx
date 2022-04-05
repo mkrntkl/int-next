@@ -3,9 +3,14 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { i18n } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Layout from '../features/layout';
 
 const Home: NextPage = () => {
-  return <div>HOME</div>;
+  return (
+    <Layout>
+      <div>HOME</div>
+    </Layout>
+  );
 };
 
 export default Home;

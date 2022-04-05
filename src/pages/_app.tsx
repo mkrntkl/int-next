@@ -25,9 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <React.StrictMode>
       <ThemeProvider theme={customTheme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Component {...pageProps} />
       </ThemeProvider>
     </React.StrictMode>
   );

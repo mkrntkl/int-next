@@ -2,9 +2,14 @@ import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import LoginForm from '../features/login';
+import Layout from '../features/layout';
 
 const SignIn = () => {
-  return <LoginForm />;
+  return (
+    <Layout>
+      <LoginForm />
+    </Layout>
+  );
 };
 
 export default SignIn;

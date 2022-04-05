@@ -2,9 +2,14 @@ import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import RegisterForm from '../features/register';
+import Layout from '../features/layout';
 
 const Register = () => {
-  return <RegisterForm />;
+  return (
+    <Layout>
+      <RegisterForm />
+    </Layout>
+  );
 };
 
 export default Register;
