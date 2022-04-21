@@ -37,9 +37,17 @@ const RegisterForm = (props: Props) => {
         }
       });
 
+      if (values.email && values.email.match(/^\S+@\S+\.\S+$/)) {
+        errors.email = 'Invalid email';
+      }
+
       if (values.username && !values.username.match(/^[a-zA-Z0-9]*$/)) {
         errors.username = 'Username may only contain letters and numbers';
       }
+      if (values.username && values.length < 5) {
+        errors.username = 'Username must have 4 or more characters.';
+      }
+
       return { values, errors };
     },
   });
